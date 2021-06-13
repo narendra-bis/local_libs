@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,14 +39,25 @@
 	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
 <!--===============================================================================================-->
 </head>
-<body style="background-color: #666666;">
+<body style="background-color: #666666;">	
+   
 	
 	<div class="limiter">
 		<div class="container-login100">
+
+
 			<div class="wrap-login100">
 				<form method="POST" class="login100-form validate-form">
 					{% csrf_token %}
 					<span class="login100-form-title p-b-43">
+					{% if messages %}
+        				{% for message in messages %}
+            		<div class="alert alert-{{ message.tags }}">  <!-- singular -->
+               	 	<a class="close" data-dismiss="alert">×</a>
+                	<h3>{{ message|safe }}</h3>
+            		</div>
+        				{% endfor %}
+    				{% endif %}
 						Login to continue
 					</span>
 					

@@ -12,7 +12,9 @@ def signout(request):
 	logout(request)
 	return redirect(reverse('catalog:index'))
 
-
+"""
+Function for user registration
+"""
 def register(request):
 	if request.method=='POST':
 		form = SignUpForm(request.POST)
