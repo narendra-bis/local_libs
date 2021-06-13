@@ -1,7 +1,10 @@
 from django.conf.urls import url
+from . import views
+
+app_name='console'
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
+    url(r'^logout', views.signout,name='signout'),
     # # url(r'myapp/',include('myapp.urls')),
     # url(r'',include('catalog.urls')),
     # url(r'',include('console.urls')),

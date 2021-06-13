@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<div align="right">
+<a href="{% url 'console:signout'%}"><button type="button" class="btn btn-danger">Logout</button></a>
+</div>
+
 <p>Book Detail</p>
 
   <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
