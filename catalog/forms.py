@@ -10,12 +10,9 @@ class RenewBookForm(forms.Form):
 	
 	def clean_renewal_date(self):
 		data = self.cleaned_data['renewal_date']
-		# import pdb;pdb.set_trace()
-
 		# Check if a date is not in the past.
 		if data < datetime.date.today():
 			raise ValidationError(_('Invalid date - renewal in past'))
-
 		# Check if a date is in the allowed range (+4 weeks from today).
 		if data > datetime.date.today() + datetime.timedelta(weeks=4):
 			raise ValidationError(_("Invalid date - renewal more than 4 weeks ahead"))
@@ -30,7 +27,6 @@ class AuthorCreateForm(ModelForm):
 		help_text = {'first_name':_('First Name')}
 
 
-
 class GenreCreateForm(ModelForm):
 	class Meta:
 		model = Genre
@@ -42,8 +38,6 @@ class AuthorDeleteForm(forms.Form):
 		model = Author
 		fields =''
 		
-
-
 
 #of we can use model form as below 
 

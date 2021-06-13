@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-
 def signout(request):
 	logout(request)
 	return redirect(reverse('catalog:index'))
@@ -17,20 +16,16 @@ def signout(request):
 Function for user registration
 """
 def register(request):
-	if request.method=='POST':
-		# import pdb;pdb.set_trace()
-
+	if request.method=='POST':	
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-
 			user.refresh_from_db()
 			user.profile.genre = form.cleaned_data.get('genre')
 			user.profile.birth_date = form.cleaned_data.get('birth_date')
 			user.profile.role = form.cleaned_data.get('role')
 			user_role = form.cleaned_data.get('role')
-			user.save()
-		
+			user.save()		
 			if request.user.is_staff == True:
 				if user_role == 'libuser':
 					user.groups.add(2)
@@ -55,6 +50,7 @@ def register(request):
 	else:
 		form = SignUpForm()
 	return render(request,'console/register.html',{'form':form})
+
 
 """
 
