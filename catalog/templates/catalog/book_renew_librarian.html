@@ -2,9 +2,6 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div align="right">
-<a href="{% url 'console:signout'%}"><button type="button" class="btn btn-danger">Logout</button></a>
-</div>
 
 <h2>Renew : {{ book_instance.book.title }} </h2>
 <h3>Borrower: {{ book_instance.borrower }}</h3>

@@ -7,3 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 def signout(request):
 	logout(request)
 	return redirect(reverse('catalog:index'))
+
+
+def register(request):
+	return render(request,'console/register.html')
