@@ -86,3 +86,33 @@ class AuthorDeleteForm(forms.Form):
 #         labels = {'due_back': _('Renewal date')}
 #         help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
 
+
+
+
+# from bootstrap_datepicker_plus import DatePickerInput
+# from django import forms
+
+# class EventForm(forms.ModelForm):
+#     class Meta:
+#         model = Event
+#         fields = ['name', 'start_date', 'end_date']
+#         widgets = {
+#             'start_date': DatePickerInput(), # default date-format %m/%d/%Y will be used
+#             'end_date': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
+#         }
+
+
+# from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
+# from django import forms
+
+# class EventForm(forms.ModelForm):
+#     class Meta:
+#         model = Event
+#         fields = ['start_date', 'start_time', 'start_datetime', 'start_month', 'start_year']
+#         widgets = {
+#             'start_date': DatePickerInput(),
+#             'start_time': TimePickerInput(),
+#             'start_datetime': DateTimePickerInput(),
+#             'start_month': MonthPickerInput(),
+#             'start_year': YearPickerInput(),
+#         }

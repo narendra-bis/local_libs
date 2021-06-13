@@ -4,6 +4,7 @@ from console.forms import SignUpForm
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -22,13 +23,35 @@ def register(request):
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+
 			user.refresh_from_db()
 			user.profile.genre = form.cleaned_data.get('genre')
 			user.profile.birth_date = form.cleaned_data.get('birth_date')
 			user.profile.role = form.cleaned_data.get('role')
+			user_role = form.cleaned_data.get('role')
 			user.save()
-			messages.success(request,_('User registered successfully'))
-			return HttpResponseRedirect(reverse('login')) 			
+		
+			if request.user.is_staff == True:
+				if user_role == 'libuser':
+					user.groups.add(2)
+					messages.success(request,_('Library user created successfully'))
+					return HttpResponseRedirect(reverse('catalog:index'))
+				elif user_role == 'libstaff':
+					user.groups.add(1)
+					messages.success(request,_('Library Staff created successfully'))
+					return HttpResponseRedirect(reverse('catalog:index'))
+				elif user_role == 'librarian':
+					user.groups.add(3)
+					user = User.objects.get(username=user)				
+					user.is_staff=True
+					user.is_superuser=True
+					user.save()
+					messages.success(request,_('Library Admin created successfully'))
+					return HttpResponseRedirect(reverse('catalog:index'))
+			else:
+				user.groups.add(2)
+				messages.success(request,_('User registered successfully'))
+				return HttpResponseRedirect(reverse('login')) 			
 	else:
 		form = SignUpForm()
 	return render(request,'console/register.html',{'form':form})
