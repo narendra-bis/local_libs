@@ -1,8 +1,12 @@
-<h1>confirm</h1>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<br>
 <form method="POST">
 	{% csrf_token %}
-	<p>Are you sure you want to delete author</p>
 
+	<p class="text-danger">Are you sure you want to delete author</p>
 	<input type="Submit" name="yes_delete" value="Yes"> <input type="Submit" name="no_delete" value="No">
-	
 </form>
+{% endblock %}

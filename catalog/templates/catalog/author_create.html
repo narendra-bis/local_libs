@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <h3>Enter Details of Author</h3>
 <br>
   <form action="" method="post">
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
+    
+    {{ form|crispy }}
+    
     <input type="submit" value="Submit">
   </form>
 {% endblock %}
